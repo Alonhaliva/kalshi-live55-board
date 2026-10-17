@@ -24,7 +24,9 @@
   .sub{ font-size:15px; font-weight:600; color:rgba(255,255,255,.82); margin:8px 0 0; }
   #amtWrap{ position:relative; margin:4% 0 2%; line-height:.9; }
   #amt{ font-size:150px; font-weight:800; letter-spacing:-.03em; color:#D6FFEE;
+    font-variant-numeric:tabular-nums; -webkit-font-feature-settings:"tnum" 1; font-feature-settings:"tnum" 1;
     text-shadow:0 0 44px rgba(214,255,238,.55); -webkit-transition:text-shadow .3s; transition:text-shadow .3s; }
+  #num{ display:inline-block; }
   #amt.glow{ text-shadow:0 0 70px rgba(255,255,255,.95),0 0 26px rgba(214,255,238,.9); }
   #amt .c{ font-size:92px; vertical-align:12px; margin-right:2px; }
   #burst{ position:absolute; top:4%; left:50%; -webkit-transform:translateX(-50%) translateY(0); transform:translateX(-50%) translateY(0);
@@ -93,16 +95,17 @@
   /* decorative market nodes (geometry only, no data claims) */
   (function buildNodes(){
     var n=document.getElementById("nodes");
-    var sq=[[10,8,70],[84,16,52],[12,80,80],[78,86,46]];
+    /* decor kept in top band + far side margins only — never over the number or disclaimer */
+    var sq=[[7,6,60],[83,10,46]];
     var i,d;
     for(i=0;i<sq.length;i++){ d=document.createElement("div"); d.className="node";
       d.style.left=sq[i][0]+"%"; d.style.top=sq[i][1]+"%"; d.style.width=sq[i][2]+"px"; d.style.height=sq[i][2]+"px";
       n.appendChild(d); }
-    var dots=[[14,13],[86,21],[16,84,0.6],[80,90],[30,30],[70,68],[50,92]];
+    var dots=[[15,11],[86,18],[46,5],[5,42],[95,48]];
     for(i=0;i<dots.length;i++){ d=document.createElement("div"); d.className="dot";
       d.style.left=dots[i][0]+"%"; d.style.top=dots[i][1]+"%";
       d.style.webkitAnimationDelay=(i*0.4)+"s"; d.style.animationDelay=(i*0.4)+"s"; n.appendChild(d); }
-    var lines=[[14,13,120,35],[86,21,120,150],[16,84,160,-32],[50,92,120,215]];
+    var lines=[[15,11,110,34],[86,18,110,152]];
     for(i=0;i<lines.length;i++){ d=document.createElement("div"); d.className="ln";
       d.style.left=lines[i][0]+"%"; d.style.top=lines[i][1]+"%"; d.style.width=lines[i][2]+"px";
       d.style.webkitTransform="rotate("+lines[i][3]+"deg)"; d.style.transform="rotate("+lines[i][3]+"deg)"; n.appendChild(d); }
